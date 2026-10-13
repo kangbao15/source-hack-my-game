@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Source Hack My Game - Underground Vault</title>
+    <style>
+        body {
+            background: #0d0914;
+            color: #f3ecf7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            color: #ff2fd6;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #2e1c3f;
+            padding-bottom: 6px;
+            margin-top: 30px;
+        }
+        pre {
+            background: #160f1f;
+            border: 1px solid #3a1950;
+            border-radius: 10px;
+            padding: 16px;
+            overflow-x: auto;
+            color: #00ffcc;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Strongwolf (Cheat State)</h1>
+    <pre><code>Object.assign(state, {
+  score: 999999999999,
+  totalEarned: 999999999999,
+  level: 999999999,
+  perClick: 999999999999,
+  perSec: 0,
+  clickCost: 20,
+  autoCost: 50,
+  comboBought: false,
+  rebirths: 30,
+  furColor: 'default',
+  expression: 'normal',
+  shirt: 'none',
+  pants: 'none',
+  ownedSkins: []
+});</code></pre>
+
+    <h1>Wolf-flappy (Unlock All & Highscore)</h1>
+    <pre><code>unlocked = 50;
+best = LV.map(l => l.t);
+localStorage.setItem('wf-save', JSON.stringify({
+    skin: skin || 'wolf',
+    un: unlocked,
+    best: best
+}));
+menu();
+console.log("✅ Đã hack thành công Full 50 màn và Kỷ lục!");</code></pre>
+
+    <h1>Bow PvP (Godmode + One Hit + Aimbot Script)</h1>
+    <pre><code>(function() {
+    // 1. FULL TIỀN
+    if (typeof save !== 'undefined') {
+        save.coins = 999999999999999999999999999;
+        if (typeof persist === 'function') persist();
+        if (typeof refreshMenu === 'function') refreshMenu();
+        const coinEl = document.getElementById("coinDisplay");
+        const coinShopEl = document.getElementById("coinDisplayShop");
+        if (coinEl) coinEl.textContent = save.coins;
+        if (coinShopEl) coinShopEl.textContent = save.coins;
+    }
+
+    // 2. BẤT TỬ + ONE HIT
+    if (window.pvpGodLoop) clearInterval(window.pvpGodLoop);
+    window.pvpGodLoop = setInterval(() => {
+        if (typeof p1 !== 'undefined' && p1) {
+            p1.hp = 100;
+        }
+        if (typeof p2 !== 'undefined' && p2 && typeof arrow !== 'undefined' && arrow && arrow.owner === 'p1') {
+            const dist = Math.hypot(arrow.x - p2.x, arrow.y - (p2.y - 40));
+            if (dist &lt; 120) { // Đã sửa dấu &lt; để không lỗi HTML
+                p2.hp = 0;
+            }
+        }
+        if (typeof updateHudBars === 'function') updateHudBars();
+    }, 20);
+
+    // 3. AIMBOT LASER
+    if (!window._baseDrawFunc && typeof draw === 'function') {
+        window._baseDrawFunc = draw;
+        window.draw = function() {
+            window._baseDrawFunc();
+            if (typeof aiming !== 'undefined' && aiming && aimStart && aimCur && turn === 'p1') {
+                const shooter = p1;
+                const dx = aimStart.x - aimCur.x;
+                const dy = aimStart.y - aimCur.y;
+                const dist = Math.hypot(dx, dy);
+                const drawAmt = Math.min(MAX_DRAW, dist);
+                const powerPct = drawAmt / MAX_DRAW;
+                const bow = shooter.bow;
+                let angle = Math.atan2(dy, dx);
+                const speed = powerPct * MAX_SPEED * bow.power;
+
+                let simX = shooter.x;
+                let simY = shooter.y - 40;
+                let simVx = Math.cos(angle) * speed;
+                let simVy = Math.sin(angle) * speed;
+
+                ctx.strokeStyle = "#00ffcc";
+                ctx.lineWidth = 3;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.moveTo(simX, simY);
+
+                for (let step = 0; step &lt; 100; step++) { // Đã sửa dấu &lt;
+                    simX += simVx * 0.06 * 16;
+                    simY += simVy * 0.06 * 16;
+                    simVy += GRAVITY * 16;
+                    ctx.lineTo(simX, simY);
+                    if (simY &gt; GROUND_Y || simX &gt; canvas.width || simX &lt; 0) break; // Đã sửa dấu &gt; và &lt;
+                }
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.fillStyle = "#ff0055";
+                ctx.beginPath();
+                ctx.arc(simX, Math.min(simY, GROUND_Y), 6, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        };
+    }
+    console.log("%c🔥 ĐÃ KÍCH HOẠT HACK!", "color: #00ffcc; font-weight: bold;");
+})();</code></pre>
+
+</body>
+</html>
