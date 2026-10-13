@@ -137,5 +137,18 @@ console.log("✅ Đã hack thành công Full 50 màn và Kỷ lục!");</code></
     console.log("%c🔥 ĐÃ KÍCH HOẠT HACK!", "color: #00ffcc; font-weight: bold;");
 })();</code></pre>
 
+    <h1>Death Race (Full Money + Unlock All Bikes + Max Speed)</h1>
+    <pre><code>// 1. Full tiền
+save.coins = 999999; persist(); refreshMenu(); renderShop(); 
+console.log("Đã hack thành công 999,999 xu!");
+
+// 2. Mở khóa toàn bộ xe
+save.owned = BIKES.map(b => b.id); persist(); renderShop(); refreshMenu(); 
+console.log("Đã mở khóa toàn bộ xe!");
+
+// 3. Tăng tốc độ xe tối đa
+player.bike.speed = 5.0; 
+console.log("Đã tăng tốc độ xe lên mức tối đa!");</code></pre>
+    
 </body>
 </html>
