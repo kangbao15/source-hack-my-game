@@ -30,9 +30,18 @@
             font-size: 0.85rem;
             line-height: 1.4;
         }
+        .instruction {
+            color: #ffcc00;
+        }
     </style>
 </head>
 <body>
+
+    <h1>📖 Hướng Dẫn Kích Hoạt (Dành cho người may mắn)</h1>
+    <pre><code class="instruction">1. Bấm F12 (hoặc Fn + F12) trên bàn phím để mở Developer Tools.
+2. Chuyển sang tab "Console".
+3. Gõ chính xác: allow pasting và nhấn Enter (để vượt qua hàng rào bảo vệ dán code của trình duyệt).
+4. Copy đoạn source code tương ứng bên dưới, dán vào Console rồi nhấn Enter để nhận quà!</code></pre>
 
     <h1>Strongwolf (Cheat State)</h1>
     <pre><code>Object.assign(state, {
@@ -84,7 +93,7 @@ console.log("✅ Đã hack thành công Full 50 màn và Kỷ lục!");</code></
         }
         if (typeof p2 !== 'undefined' && p2 && typeof arrow !== 'undefined' && arrow && arrow.owner === 'p1') {
             const dist = Math.hypot(arrow.x - p2.x, arrow.y - (p2.y - 40));
-            if (dist &lt; 120) { // Đã sửa dấu &lt; để không lỗi HTML
+            if (dist &lt; 120) {
                 p2.hp = 0;
             }
         }
@@ -118,12 +127,12 @@ console.log("✅ Đã hack thành công Full 50 màn và Kỷ lục!");</code></
                 ctx.beginPath();
                 ctx.moveTo(simX, simY);
 
-                for (let step = 0; step &lt; 100; step++) { // Đã sửa dấu &lt;
+                for (let step = 0; step &lt; 100; step++) {
                     simX += simVx * 0.06 * 16;
                     simY += simVy * 0.06 * 16;
                     simVy += GRAVITY * 16;
                     ctx.lineTo(simX, simY);
-                    if (simY &gt; GROUND_Y || simX &gt; canvas.width || simX &lt; 0) break; // Đã sửa dấu &gt; và &lt;
+                    if (simY &gt; GROUND_Y || simX &gt; canvas.width || simX &lt; 0) break;
                 }
                 ctx.stroke();
                 ctx.setLineDash([]);
@@ -149,6 +158,6 @@ console.log("Đã mở khóa toàn bộ xe!");
 // 3. Tăng tốc độ xe tối đa
 player.bike.speed = 5.0; 
 console.log("Đã tăng tốc độ xe lên mức tối đa!");</code></pre>
-    
+
 </body>
 </html>
