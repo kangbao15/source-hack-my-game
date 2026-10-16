@@ -158,6 +158,41 @@ console.log("Đã mở khóa toàn bộ xe!");
 // 3. Tăng tốc độ xe tối đa
 player.bike.speed = 5.0; 
 console.log("Đã tăng tốc độ xe lên mức tối đa!");</code></pre>
+    
+    <h1>Steal a wolf egg (full tiền, full màn, full giày, vô hạ hạn</h1>
+    <pre><code>(() => {
+  const MIN_GAP = 200;
+
+  save.coins = 999999999999999;
+  save.unlocked = 70;
+  save.owned = SHOES.map(s => s.id);
+  save.shoe = 'tt';
+  persist();
+
+  if (window.swHackOff) window.swHackOff();
+
+  const orig = { updChase, stumble, pitAt };
+  window.__swHack = orig;
+  window.stumble = function () {};
+  window.pitAt = function () { return null; };
+  window.updChase = function (dt) {
+    orig.updChase(dt);
+    if (state === 'chase' && pl && wolf) {
+      const gap = pl.x - (wolf.x + 50);
+      if (gap < MIN_GAP) wolf.x = pl.x - 50 - MIN_GAP;
+    }
+  };
+  window.swHackOff = () => {
+    window.updChase = orig.updChase; window.stumble = orig.stumble; window.pitAt = orig.pitAt;
+    delete window.__swHack; delete window.swHackOff;
+    console.log('Đã tắt bất tử và khoá sói');
+  };
+
+  refreshMenu();
+  if ($('shop').classList.contains('show')) renderShop();
+  if ($('levels').classList.contains('show')) buildLevels();
+  console.log('%c🔥 HACK THÀNH CÔNG', 'color:#00ffcc;font-weight:bold;font-size:14px');
+})();</code></pre>
 
 </body>
 </html>
