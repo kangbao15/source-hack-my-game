@@ -193,6 +193,36 @@ console.log("Đã tăng tốc độ xe lên mức tối đa!");</code></pre>
   if ($('levels').classList.contains('show')) buildLevels();
   console.log('%c🔥 HACK THÀNH CÔNG', 'color:#00ffcc;font-weight:bold;font-size:14px');
 })();</code></pre>
+    
+    <h1>Labyrinth Wolf (Full tiền, full màn</h1>
+    <pre><code>// Lấy dữ liệu lưu hiện tại từ localStorage
+let save = JSON.parse(localStorage.getItem('labyrinthWolf')) || {
+  coins: 0,
+  unlockedLevel: 1,
+  owned: ['torch'],
+  equipped: 'torch',
+  sfx: true,
+  bgm: true
+};
+
+// Cập nhật hack: Full tiền và Full 50 màn, mở khóa tất cả item
+save.coins = 9999999999999999;
+save.unlockedLevel = 50;
+save.owned = ['torch', 'torchfill', 'wolfeye'];
+
+// Lưu lại vào localStorage
+localStorage.setItem('labyrinthWolf', JSON.stringify(save));
+
+// In log màu xanh lá hacker để khoe
+console.log(
+  '%c>>> [SYSTEM OVERRIDE] Hack thành công - Full tiền - Full màn! <<<',
+  'color: #00ff00; background: #0b0f0b; font-size: 15px; font-weight: bold; font-family: monospace; padding: 8px 12px; border: 1px dashed #00ff00; text-shadow: 0 0 8px #00ff00;'
+);
+
+// Delay 2 giây để dòng log kịp hiển thị cho bạn chụp ảnh/quay màn hình khoe trước khi reload
+setTimeout(() => {
+  location.reload();
+}, 2000);</code></pre>
 
 </body>
 </html>
